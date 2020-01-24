@@ -23,8 +23,6 @@ def event_handler(event, response):
     for newline in data.splitlines():
 	if (headers['channel'] == 'stdout'):
             print( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
-            sys.stdout.flush()
-            sys.stderr.flush()
 
 if __name__ == '__main__':
     main()
