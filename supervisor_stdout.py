@@ -24,7 +24,7 @@ def event_handler(event, response):
     headers = dict([ x.split(':') for x in line.split() ])
     for newline in data.splitlines():
       print( '{0} [{1}] [{2}] {3}'.format( datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f"), headers['processname'], headers['channel'], newline) )
-    time.sleep(2)
+    time.sleep(1)
     sys.stdout.flush()
     sys.stderr.flush()
 
