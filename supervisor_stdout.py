@@ -1,5 +1,6 @@
 from __future__ import print_function
 import sys
+import time
 
 def write_stdout(s):
     sys.stdout.write(s)
@@ -21,8 +22,10 @@ def event_handler(event, response):
     line, data = response.split('\n', 1)
     headers = dict([ x.split(':') for x in line.split() ])
     for newline in data.splitlines():
-	if (headers['channel'] == 'stdout'):
-            print( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
+      print( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
+    time.sleep(10)
+    sys.stdout.flush()
+    sys.stderr.flush()
 
 if __name__ == '__main__':
     main()
