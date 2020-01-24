@@ -1,6 +1,7 @@
 from __future__ import print_function
 import sys
 import time
+import datetime
 
 def write_stdout(s):
     sys.stdout.write(s)
@@ -22,8 +23,8 @@ def event_handler(event, response):
     line, data = response.split('\n', 1)
     headers = dict([ x.split(':') for x in line.split() ])
     for newline in data.splitlines():
-      print( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
-    time.sleep(10)
+      print( '{0} [{1}] [{2}] {3}'.format( datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f"), headers['processname'], headers['channel'], newline) )
+    time.sleep(2)
     sys.stdout.flush()
     sys.stderr.flush()
 
