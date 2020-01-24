@@ -22,10 +22,9 @@ def event_handler(event, response):
     headers = dict([ x.split(':') for x in line.split() ])
     for newline in data.splitlines():
 	if (headers['channel'] == 'stdout'):
-            sys.stdout.write( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
-        if (headers['channel'] == 'stderr'):
-            sys.stderr.write( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
-
+            print( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
+            sys.stdout.flush()
+            sys.stderr.flush()
 
 if __name__ == '__main__':
     main()
