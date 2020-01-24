@@ -21,7 +21,11 @@ def event_handler(event, response):
     line, data = response.split('\n', 1)
     headers = dict([ x.split(':') for x in line.split() ])
     for newline in data.splitlines():
-        print( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
+	if (headers['channel'] == 'stdout'):
+            sys.stdout.write( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
+        if (headers['channel'] == 'stderr'):
+            sys.stderr.write( '[{0}] [{1}] {2}'.format(headers['processname'], headers['channel'], newline) )
+
 
 if __name__ == '__main__':
     main()
